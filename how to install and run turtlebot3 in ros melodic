@@ -1,0 +1,20 @@
+sudo apt-get install ros-melodic-joy ros-melodic-teleop-twist-joy
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/
+catkin_make
+cd ~/catkin_ws/src/
+git clone https://github.com/ROBOTIS-GIT/turtlebot3_msgs.git
+git clone https://github.com/ROBOTIS-GIT/turtlebot3.git
+cd ~/catkin_ws && catkin_make
+cd ~/catkin_ws/src/
+git clone -b melodic-devel https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+cd ~/catkin_ws && catkin_make
+export TURTLEBOT3_MODEL=burger
+source devel/setup.bash
+#to run turtlebot in rviz
+roslaunch turtlebot3_fake turtlebot3_fake.launch
+#to run turtlebot in gazebo
+roslaunch turtlebot3_gazebo turtlebot3_world.launch
+#New Terminal to control turtlebot movement
+export TURTLEBOT3_MODEL=burger
+roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch
